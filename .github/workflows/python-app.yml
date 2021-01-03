@@ -35,3 +35,5 @@ jobs:
       run: |
         export PYTHONPATH=flaskr
         pytest
+    - name: Python Style Checker
+      uses: andymckay/pycodestyle-action@0.1.3
