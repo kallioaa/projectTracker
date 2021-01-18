@@ -7,7 +7,10 @@ def login_user(username, password):
     if not user_found:
         return "Username not found."
     else:
-        print(bcrypt.checkpw(password, user_found.password))
+        if not bcrypt.checkpw(password, user_found.password):
+            return "password is incorrect."
+        else:
+            return None
 
 
 def create_user(username, email, password, repeat_password):
@@ -32,7 +35,8 @@ def username_format(username):
     if (len(username) > 24):
         errors.append("Maximum length is 24")
     else:
-        if db.session.query(User.id).filter_by(username=username).scalar() is not None:
+        q = db.session.query(User.id).filter_by(username=username).scalar()
+        if q is not None:
             errors.append("Username is taken.")
     return errors
 

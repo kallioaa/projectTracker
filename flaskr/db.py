@@ -11,10 +11,15 @@ db = SQLAlchemy(app)
 
 
 class user(db.Model):
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(25), unique=True, nullable=False)
     password = db.Column(db.String(60), nullable=False)
     email = db.Column(db.String(50), nullable=False)
+
+class comppany(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comppany_name = db.Column(db.String(50), unique=True, nullable=False)
+    comppany_id = db.Column(db.String(10), unique=True, nullable=False)
 
 
 db.create_all()
