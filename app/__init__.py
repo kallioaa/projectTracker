@@ -13,9 +13,13 @@ db = SQLAlchemy(app)
 def not_found(error):
     return render_template("404.html"), 404
 
+
 from app.mod_auth.controllers import mod_auth as auth_module
+from app.mod_company.controllers import mod_company as company_module
+
 
 app.register_blueprint(auth_module)
+app.register_blueprint(company_module)
 
 db.create_all()
 
