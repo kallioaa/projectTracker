@@ -1,4 +1,5 @@
-from db import user as User, db
+from app.mod_auth.models import User
+from app import db
 import bcrypt
 
 
@@ -9,8 +10,7 @@ def login_user(username, password):
     else:
         if not bcrypt.checkpw(password, user_found.password):
             return "password is incorrect."
-        else:
-            return None
+        return None
 
 
 def create_user(username, email, password, repeat_password):
@@ -50,4 +50,3 @@ def password_format(password, repeat_password):
     if (password != repeat_password):
         errors.append("Those passwords didn't match.")
     return errors
-
